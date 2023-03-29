@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Fertilizer Prediction</title>
+  <script type="text/JavaScript" src="{{ url_for('static', filename='scripts/cities.js') }}"></script>
+
+</head>
+<style>
+      input[type=submit] {
+          background-color: #0066A2;
+          border-color: #0066A2;
+          border-style: outset;
+          color: white;
+          border: 1px solid #eee;
+          border-radius: 10px;
+          padding: 12px 25px;
+          font: bold 20px arial, sans-serif;
+          margin: 4px 2px;
+          cursor: pointer;
+      }
+      input[type="number"] {
+          font-family:courier;
+          height: 20px;
+          width: 190px;
+          border-radius: 10px;
+          text-align: center;
+      }
+      input[type="number"]::placeholder {
+          font-weight: lighter;
+          text-align: center;
+      }
+      body {
+            background: linear-gradient(#f69d3c, #3f87a6);
+              }
+      h1 {
+          color: white;
+          text-shadow: 1px 1px 2px red, 0 0 25px black;
+      }
+      select {
+           width: 200px;
+           text-align-last:center;
+           border-radius: 10px;
+           font-family:courier;
+           font-size:15px;
+           font-weight: bold;
+           height: 25px;
+      }
+    </style>
+<body style="text-align:center;">
+ <div>
+	<h1><u>Crop Prediction</u></h1>
+     
+
+     <!-- Main Input For Receiving Query to our ML -->
+     <form method="POST" action="{{ url_for('crop_prediction') }}">
+        <div class="form-group">
+          <label for="Nitrogen" style="font-size: 17px"><b>Nitrogen</b></label>
+          <input
+            type="number"
+            class="form-control"
+            id="Nitrogen"
+            name="nitrogen"
+            placeholder="Enter the value (example:50)"
+            style="font-weight: bold"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="Phosphorous" style="font-size: 17px"
+            ><b>Phosphorous</b></label
+          >
+          <input
+            type="number"
+            class="form-control"
+            id="Phosphorous"
+            name="phosphorous"
+            placeholder="Enter the value (example:50)"
+            style="font-weight: bold"
+            required
+          />
+        </div>
+    
+        <div class="form-group">
+          <label for="Pottasium" style="font-size: 17px"><b>Pottasium</b></label>
+          <input
+            type="number"
+            class="form-control"
+            id="Pottasium"
+            name="pottasium"
+            placeholder="Enter the value (example:50)"
+            style="font-weight: bold"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="ph" style="font-size: 17px"><b>ph level</b></label>
+          <input
+            type="number"
+            step="0.01"
+            class="form-control"
+            id="ph"
+            name="ph"
+            placeholder="Enter the value"
+            style="font-weight: bold"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="Rainfall" style="font-size: 17px"><b>Rainfall (in mm)</b></label>
+          <input
+            type="number"
+            step="0.01"
+            class="form-control"
+            id="Rainfall"
+            name="rainfall"
+            placeholder="Enter the value"
+            style="font-weight: bold"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="State" style="font-size: 17px "><b>State</b></label>
+          <select
+            onchange="print_city('state', this.selectedIndex);"
+            id="sts"
+            name="stt"
+            class="form-control"
+            style="font-weight: bold; color: black;"
+            
+            required
+          ></select>
+          <br />
+          <label for="City" style="font-size: 17px"><b>City</b></label>
+          <select
+            id="state"
+            class="form-control"
+            name="city"
+            style="font-weight: bold; color: black;"
+            required
+          ></select>
+          <script language="javascript">
+            print_state("sts");
+          </script>
+        </div>
+    
+        <div class="d-flex justify-content-center">
+          <button
+            type="submit"
+            class="btn btn-info"
+            style="color: black; font-weight: bold; width: 130px; height:50px; border-radius:12px; font-size: 21px;"
+          >
+            Predict
+          </button>
+        </div>
+      </form>
+ </div>
+
+</body>
+</html>

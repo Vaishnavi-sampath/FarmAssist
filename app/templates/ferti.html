@@ -2,10 +2,10 @@
 <html >
 <head>
   <meta charset="UTF-8">
-  <title>Fertilizer Prediction</title>
+  <title>Fertilizer Recommendation Form</title>
 </head>
 <style>
-      input[type=submit] {
+      button {
           background-color: #0066A2;
           border-color: #0066A2;
           border-style: outset;
@@ -47,7 +47,7 @@
     </style>
 <body style="text-align:center;">
  <div>
-	<h1><u>Fertilizer Prediction</u></h1>
+	<h1><u>Fertilizer Recommendation</u></h1>
      <h1>{{x}}</h1>
 
      <!-- Main Input For Receiving Query to our ML -->
@@ -95,7 +95,8 @@
         <label for="phos" style="font-size:130%;"><b>Phosphorous:</b></label><br>
         <input type="number" name="phos" placeholder="Enter the value" required="required" /><br><br>
 
-        <input type="submit" >
+        
+        <button>Recommend</button>
     </form>
  </div>
 

@@ -1,7 +1,74 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, Markup
 import pickle
 
-app = Flask(__name__)
+
+# Importing essential libraries and modules
+
+import numpy as np
+#import pandas as pd
+from utils.disease import disease_dic
+import requests
+import config
+import io
+
+
+# Loading plant disease classification model
+
+disease_classes = ['Apple___Apple_scab',
+                   'Apple___Black_rot',
+                   'Apple___Cedar_apple_rust',
+                   'Apple___healthy',
+                   'Blueberry___healthy',
+                   'Cherry_(including_sour)___Powdery_mildew',
+                   'Cherry_(including_sour)___healthy',
+                   'Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot',
+                   'Corn_(maize)___Common_rust_',
+                   'Corn_(maize)___Northern_Leaf_Blight',
+                   'Corn_(maize)___healthy',
+                   'Grape___Black_rot',
+                   'Grape___Esca_(Black_Measles)',
+                   'Grape___Leaf_blight_(Isariopsis_Leaf_Spot)',
+                   'Grape___healthy',
+                   'Orange___Haunglongbing_(Citrus_greening)',
+                   'Peach___Bacterial_spot',
+                   'Peach___healthy',
+                   'Pepper,_bell___Bacterial_spot',
+                   'Pepper,_bell___healthy',
+                   'Potato___Early_blight',
+                   'Potato___Late_blight',
+                   'Potato___healthy',
+                   'Raspberry___healthy',
+                   'Soybean___healthy',
+                   'Squash___Powdery_mildew',
+                   'Strawberry___Leaf_scorch',
+                   'Strawberry___healthy',
+                   'Tomato___Bacterial_spot',
+                   'Tomato___Early_blight',
+                   'Tomato___Late_blight',
+                   'Tomato___Leaf_Mold',
+                   'Tomato___Septoria_leaf_spot',
+                   'Tomato___Spider_mites Two-spotted_spider_mite',
+                   'Tomato___Target_Spot',
+                   'Tomato___Tomato_Yellow_Leaf_Curl_Virus',
+                   'Tomato___Tomato_mosaic_virus',
+                   'Tomato___healthy']
+
+
+
+
+
+
+
+
+
+
+# Loading crop recommendation model
+
+crop_recommendation_model_path = 'models/RandomForest.pkl'
+crop_recommendation_model = pickle.load(
+    open(crop_recommendation_model_path, 'rb'))
+
+# Loading fertilizer prediction model
 fertilizer_model_path = 'models/SVM_Fertilizer.pkl'
 fertilizer_model = pickle.load(
     open(fertilizer_model_path, 'rb'))
@@ -11,14 +78,90 @@ fertilizer_target_path = 'models/Ferti_Target.pkl'
 fertilizer_target = pickle.load(
     open(fertilizer_target_path, 'rb'))
 
+#----------------------weather function--------------
+def weather_fetch(city_name):
+    """
+    Fetch and returns the temperature and humidity of a city
+    :params: city_name
+    :return: temperature, humidity
+    """
+    api_key = config.weather_api_key
+    base_url = "http://api.openweathermap.org/data/2.5/weather?"
 
+    complete_url = base_url + "appid=" + api_key + "&q=" + city_name
+    response = requests.get(complete_url)
+    x = response.json()
+
+    if x["cod"] != "404":
+        y = x["main"]
+
+        temperature = round((y["temp"] - 273.15), 2)
+        humidity = y["humidity"]
+        return temperature, humidity
+    else:
+        return None
+
+#-----------------------flask app---------------------
+
+app = Flask(__name__)
 
 @app.route('/')
-def welcome():
-    return render_template('ferti.html')
+def home():
+    title = 'FarmAssist - Home'
+    return render_template('index.html', title=title)
 
-@app.route('/fertilizer-predict',methods=['POST'])
+# render crop recommendation form page
+
+
+@ app.route('/crop')
+def crop_recommend():
+    title = 'FarmAssist - Crop Prediction'
+    return render_template('crop.html', title=title)
+
+# render fertilizer recommendation form page
+
+
+@ app.route('/fertilizer')
+def fertilizer_recommendation():
+    title = 'FarmAssist - Fertilizer Recommendation'
+
+    return render_template('ferti.html', title=title)
+
+#-----------------------render prediction page---------------------------
+
+
+@ app.route('/crop-prediction', methods=['POST'])
+def crop_prediction():
+    title = 'FarmAssist - Crop Prediction'
+
+    if request.method == 'POST':
+        N = int(request.form['nitrogen'])
+        P = int(request.form['phosphorous'])
+        K = int(request.form['pottasium'])
+        ph = float(request.form['ph'])
+        rainfall = float(request.form['rainfall'])
+
+        # state = request.form.get("stt")
+        city = request.form.get("city")
+
+        if weather_fetch(city) != None:
+            temperature, humidity = weather_fetch(city)
+            data = np.array([[N, P, K, temperature, humidity, ph, rainfall]])
+            my_prediction = crop_recommendation_model.predict(data)
+            final_prediction = my_prediction[0]
+
+            return render_template('croppredict.html', prediction=final_prediction, title=title)
+
+        else:
+
+            return render_template('try_again.html', title=title)
+        
+
+
+
+@app.route('/fertilizer-recommendation',methods=['POST'])
 def fertilizer_predict():
+    title = 'FarmAssist - Fertilizer Recommendation'
     temp = request.form.get('temp')
     humi = request.form.get('humid')
     mois = request.form.get('mois')
@@ -31,7 +174,7 @@ def fertilizer_predict():
 
     res = fertilizer_target.classes_[fertilizer_model.predict([input])]
 
-    return render_template('fertipredict.html',x = ('Predicted Fertilizer is {}'.format(res)))
+    return render_template('fertipredict.html',x = ('Predicted Fertilizer is {}'.format(res)),title=title)
 
 if __name__ == "__main__":
     app.run(debug=True)

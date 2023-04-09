@@ -7,6 +7,7 @@ import pickle
 import numpy as np
 #import pandas as pd
 from utils.disease import disease_dic
+from utils.fertilizer import fertilizer_dic
 import requests
 import config
 import io
@@ -197,8 +198,10 @@ def fertilizer_predict():
     input = [int(temp),int(humi),int(mois),int(soil),int(crop),int(nitro),int(pota),int(phosp)]
 
     res = fertilizer_target.classes_[fertilizer_model.predict([input])]
+    res_scalar = res.item()
+    desc=fertilizer_dic[res_scalar]
 
-    return render_template('fertipredict.html',x = ('Predicted Fertilizer is {}'.format(res)),title=title)
+    return render_template('fertipredict.html',x = ('Predicted Fertilizer is {}'.format(res)),desc=desc,title=title)
 
 
 @app.route('/disease-predict', methods=['GET', 'POST'])

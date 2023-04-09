@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<!--
+	Spectral by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Fertilizer Recommendation</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='frontend/assets/css/main.css') }}" />
+		<noscript><link rel="stylesheet" href="{{ url_for('static', filename='frontend/assets/css/noscript.css') }}" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+				<header id="header">
+					<h1><a href="{{ url_for('home') }}"><img class="logo" src="{{ url_for('static', filename='frontend/images/logo.png') }}"></a></h1>
+					<nav id="nav">
+						<ul>
+							<li class="special">
+								<a href="#menu" class="menuToggle"><span>Menu</span></a>
+								<div id="menu">
+									<ul>
+										<li><a href="{{ url_for('home') }}">Home</a></li>
+										<li><a href="{{ url_for('crop_recommend') }}">Crop Prediction</a></li>
+										<li><a href="{{ url_for('fertilizer_recommendation') }}">Fertilizer Suggestion</a></li>
+										<li><a href="{{ url_for('disease_prediction') }}">Disease Detection</a></li>
+									</ul>
+								</div>
+							</li>
+						</ul>
+					</nav>
+				</header>
+
+				<!-- Main -->
+					<article id="main">
+						<header>
+							<h2>Oops Try Again</h2>
+						</header>
+						<section class="wrapper style5">
+							<div class="inner">
+                                <div class="container">
+
+                                    
+                                        
+                                        <div class="col-12">
+                                                <h2 class="note">Sorry we couldn't process your request
+                                                    currently. <br> Please try again</h2>
+                                                
+                                            </div>
+                                    
+                            
+                            
+                                    <a href="{{ url_for('home') }}">
+                                        <div class="col-12">
+                                            <ul class="actions">
+                                                <li><input type="submit" value="Try Again" class="primary" /></li>
+                                                
+                                            </ul>
+                                        </div>
+                                    </a>
+                                </div>
+							
+								
+							</div>
+						</section>
+					</article>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<ul class="icons">
+							<li><a href="#" class="icon brands fa-whatsapp"><span class="label">Whatsapp</span></a></li>
+							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+						</ul>
+						<ul class="copyright">
+							<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						</ul>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+		<script src="{{ url_for('static', filename='frontend/assets/js/jquery.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='frontend/assets/js/jquery.scrollex.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='frontend/assets/js/jquery.scrolly.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='frontend/assets/js/browser.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='frontend/assets/js/breakpoints.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='frontend/assets/js/util.js') }}"></script>
+		<script src="{{ url_for('static', filename='frontend/assets/js/main.js') }}"></script>
+
+
+	</body>
+</html>

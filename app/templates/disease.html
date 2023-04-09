@@ -1,61 +1,122 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plant Disease Detection</title>
-</head>
-<body>
-    <style>
-        html body {
-          background-color: rgb(206, 206, 228);
-        }
-      </style>
-      <br /><br />
-        <h2 style="text-align: center; margin: 0px; color: black">
-          <b>Find out which disease has been caught by your plant</b>
-        </h2>
-        <br />
-        <br>
+<!DOCTYPE HTML>
+<!--
+	Spectral by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Disease Detection</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		
+		<link rel="stylesheet" href="{{ url_for('static', filename='frontend/assets/css/main.css') }}" type='text/css'/>
+		<noscript><link rel="stylesheet" href="{{ url_for('static', filename='frontend/assets/css/noscript.css') }}"/></noscript>
+	
+	</head>
+	<body class="is-preload">
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="{{ url_for('home') }}"><img class="logo" src="{{ url_for('static', filename='frontend/images/logo.png') }}"></a></h1>
+						
+						<nav id="nav">
+							<ul>
+								<li class="special">
+									<a href="#menu" class="menuToggle"><span>Menu</span></a>
+									<div id="menu">
+										<ul>
+											<li><a href="{{ url_for('home') }}">Home</a></li>
+											<li><a href="{{ url_for('crop_recommend') }}">Crop Prediction</a></li>
+											<li><a href="{{ url_for('fertilizer_recommendation') }}">Fertilizer Suggestion</a></li>
+											<li><a href="{{ url_for('disease_prediction') }}">Disease Detection</a></li>
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Main -->
+					<article id="main">
+						<header>
+							<h2>Disease Detection</h2>
+							<p>Aliquam ut ex ut interdum donec amet imperdiet eleifend</p>
+						</header>
+						<section class="wrapper style5">
+							<div class="inner">
+
+								<section class="container">
+									<h4>Upload the image of the diseased plant</h4>
+									<form method="post" enctype=multipart/form-data>
+										<div>
+											
+											
+											<div>
+                                                
+												<label for="images" class="drop-container">
+													<span class="drop-title">Drop files here</span>
+													or
+													<input type="file" name="file" id="inputfile" accept="image/*" onchange="preview_image(event)">
+												</label>
+												<img id="output-image"  />
+                                               
+												</div>
+											<div >
+												<ul class="actions">
+													<li><input type="submit" value="Detect" class="primary" /></li>
+													<li><input type="reset" value="Reset" /></li>
+												</ul>
+											</div>
+										</div>
+									</form>
+
+								</section>
+								<script type="text/javascript">
+									function preview_image(event) {
+									  var reader = new FileReader();
+									  reader.onload = function () {
+										var output = document.getElementById('output-image')
+										output.src = reader.result;
+									  }
+									  reader.readAsDataURL(event.target.files[0]);
+									}
+								  </script>
+
+								
+
+							</div>
+						</section>
+					</article>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<ul class="icons">
+							<li><a href="#" class="icon brands fa-whatsapp"><span class="label">Whatsapp</span></a></li>
+							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+						</ul>
+						<ul class="copyright">
+							<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						</ul>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+		<script src="{{ url_for('static', filename='frontend/assets/js/jquery.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='frontend/assets/js/jquery.scrollex.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='frontend/assets/js/jquery.scrolly.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='frontend/assets/js/browser.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='frontend/assets/js/breakpoints.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='frontend/assets/js/util.js') }}"></script>
+		<script src="{{ url_for('static', filename='frontend/assets/js/main.js') }}"></script>
+
       
-      <div style="
-          width: 350px;
-          height: 50rem;
-          margin: 0px auto;
-          color: black;
-          border-radius: 25px;
-          padding: 10px 10px;
-          font-weight: bold;
-        ">
-      
-        
-      
-      
-        <form class="form-signin" method=post enctype=multipart/form-data>
-      
-          <h2 class="h4 mb-3 font-weight-normal"><b>Please Upload The Image</b></h2>
-          <input type="file" name="file" class="form-control-file" id="inputfile" onchange="preview_image(event)" style="font-weight: bold;">
-          <br>
-          <br>
-          <img id="output-image" class="rounded mx-auto d-block" />
-          <button class="btn btn-lg btn-primary btn-block" type="submit" style="font-weight: bold;">Detect</button>
-      
-      
-        </form>
-      </div>
-      
-      <script type="text/javascript">
-        function preview_image(event) {
-          var reader = new FileReader();
-          reader.onload = function () {
-            var output = document.getElementById('output-image')
-            output.src = reader.result;
-          }
-          reader.readAsDataURL(event.target.files[0]);
-        }
-      </script>
-      
-      </div>
-</body>
+
+	</body>
 </html>

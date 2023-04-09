@@ -4080,3 +4080,12 @@ input, select, textarea {
 	.note{
 		color: #fff;
 	}
+	.pred_img{
+		display: flex; 
+		justify-content: center;
+	}
+	.fert_desc{
+		text-align: justify;
+		line-height: 2;
+
+	}

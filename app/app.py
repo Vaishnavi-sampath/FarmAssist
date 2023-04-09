@@ -1,4 +1,5 @@
 from flask import Flask, request, redirect, render_template, Markup
+from flask import url_for
 import pickle
 
 
@@ -8,6 +9,7 @@ import numpy as np
 #import pandas as pd
 from utils.disease import disease_dic
 from utils.fertilizer import fertilizer_dic
+from utils.crop import crop_image_dic
 import requests
 import config
 import io
@@ -175,7 +177,13 @@ def crop_prediction():
             my_prediction = crop_recommendation_model.predict(data)
             final_prediction = my_prediction[0]
 
-            return render_template('croppredict.html', prediction=final_prediction, title=title)
+            # Get image file name for the predicted crop
+            image_file_name = crop_image_dic.get(final_prediction.lower(), 'default.jpg')
+
+
+            return render_template('croppredict.html', prediction=final_prediction,
+                                   image_url=url_for('static', filename='frontend/images/crop_img/' + image_file_name),
+                                     title=title)
 
         else:
 

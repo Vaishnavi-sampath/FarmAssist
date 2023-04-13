@@ -52,9 +52,8 @@
 					<section id="banner">
 						<div class="inner">
 							<h2>Farm Assist</h2>
-							<p>Another fine responsive<br />
-							site template freebie<br />
-							crafted by HTML5 UP.</p>
+							<p>A helping hand to farmers</p>
+							
 							
 						</div>
 						<a href="#one" class="more scrolly">Learn More</a>
@@ -64,18 +63,20 @@
 					<section id="one" class="wrapper style1 special">
 						<div class="inner">
 							<header class="major">
-								<h2>How to do it<br />
-								eget augue amet aliquet nisl cep donec</h2>
-								<p>Aliquam ut ex ut augue consectetur interdum. <br/>
-									Donec amet imperdiet eleifend<br />
-								fringilla tincidunt. Nullam dui leo Aenean mi ligula, rhoncus ullamcorper.</p>
+								
+								<h2>Here are some questions we'll answer
+								</h2><br>
+								<h5 style="line-height: 2.6;">1. What crop to plant here? <br>
+									2. What fertilizer to use? <br>
+									3. Which disease do your crop have?<br>
+									4. How to cure the disease?</h5>
 							</header>
 							<ul class="icons major">
-								<li><span class="icon fas fa-tree major style1"><span class="label">Lorem</span></span></li>
-								<li><span class="icon fas fa-tractor major style2"><span class="label">Ipsum</span></span></li>
-								<li><span class="icon solid fas fa-seedling major style3"><span class="label">Dolor</span></span></li>
+								<li><span class="icon fas fa-tree major style1"><span class="label">Tree</span></span></li>
+								<li><span class="icon fas fa-tractor major style2"><span class="label">Tractor</span></span></li>
+								<li><span class="icon solid fas fa-seedling major style3"><span class="label">Plantation</span></span></li>
 							</ul>
-							<br/>
+							
 						</div>
 					</section>
 
@@ -83,22 +84,23 @@
 					<section id="two" class="wrapper alt style2">
 						<section class="spotlight">
 							<div class="image"><img src="{{ url_for('static', filename='frontend/images/pic01.jpg') }}" alt="" /></div><div class="content">
-								<h2>Magna primis lobortis<br />
-								sed ullamcorper</h2>
-								<p>Aliquam ut ex ut augue consectetur interdum. Donec hendrerit imperdiet. Mauris eleifend fringilla nullam aenean mi ligula.</p>
+								<h2>Crop Prediction<br />
+								</h2>
+								<p class="cont">We recommend the crop by considering the NPK values of the soil, pH of the soil, temperature, humidity, rainfall values etc and run them through a trained ML model to get the most accurate suggestion.</p>
 								<ul class="actions stacked">
-									<li><a href="{{ url_for('crop_recommend') }}" class="button fit primary">Crop Prediction</a></li>
+									<li><a href="{{ url_for('crop_recommend') }}" class="button fit primary">Predict</a></li>
 								</ul>
 							
 							</div>
 						</section>
 						<section class="spotlight">
 							<div class="image"><img src="{{ url_for('static', filename='frontend/images/pic02.jpg') }}" alt="" /></div><div class="content">
-								<h2>Tortor dolore feugiat<br />
-								elementum magna</h2>
-								<p>Aliquam ut ex ut augue consectetur interdum. Donec hendrerit imperdiet. Mauris eleifend fringilla nullam aenean mi ligula.</p>
+								<h2>Fertilizer Recommendation<br />
+								</h2>
+								<p class="cont">Choosing the best fit crop without checking if the soil could provide all the required nutrients for a healthy and unrestricted growth of the plant is a futile effort. 
+									 We collect the crop, soil and environmental data to provide the best suitable fertilizer for those conditions.</p>
 								<ul class="actions stacked">
-									<li><a href="{{ url_for('fertilizer_recommendation') }}" class="button fit primary">Fertilizer Recommendation</a></li>
+									<li><a href="{{ url_for('fertilizer_recommendation') }}" class="button fit primary">Recommend</a></li>
 								</ul>
 							
 							
@@ -106,11 +108,11 @@
 						</section>
 						<section class="spotlight">
 							<div class="image"><img src="{{ url_for('static', filename='frontend/images/pic03.jpg') }}" alt="" /></div><div class="content">
-								<h2>Augue eleifend aliquet<br />
-								sed condimentum</h2>
-								<p>Aliquam ut ex ut augue consectetur interdum. Donec hendrerit imperdiet. Mauris eleifend fringilla nullam aenean mi ligula.</p>
+								<h2>Plant Disease Detection<br />
+								</h2>
+								<p class="cont">One of the major readons of crop loss is plant diseases. The delay in the detection has many serious economic consequences do we help the farmer to detect the leaf disease intime and also extend our support by suggesting the best ways to protect their crop.</p>
 								<ul class="actions stacked">
-									<li><a href="{{ url_for('disease_prediction') }}" class="button fit primary">Disease Detection</a></li>
+									<li><a href="{{ url_for('disease_prediction') }}" class="button fit primary">Detect</a></li>
 								</ul>
 									
 								
@@ -119,7 +121,29 @@
 							
 						</section>
 					</section>
-
+					
+					<section id="one" class="wrapper style1 special">
+						<div class="inner">
+							<div class="about">
+							<header class="major">
+								
+								<h2>About Us<br>
+								</h2><br>
+								<div class="image"><img src="{{ url_for('static', filename='frontend/images/about.png') }}" alt="" height="200" width="1000"/></div>
+								<br><br>
+								<p style="line-height: 2.6;text-align: justify;">Our website is one stop solution finder for the farmers to enhance their yield by getting suggestion for the type of crop/ fertilizer to be used for their land 
+									with atmost accuracy and also to detect any leaf disease and give the suggestions to protect their crop.<br><br>
+							   
+									A trip to a friend's home town gave us an insight into the agriculture and farming techniques. After a short interaction with the local farmers, we understood that the old farming techniques such as organic fertilizers made with cow dung, neem oil to prevent pesticides does not work efficiently as in old times because of various reasons like, irregular rainfall, global warming, lack of nutrients in the soil, resistance towards fertilizers. <br><br>
+									Also, most importantly the nutrient value in soil has been drastically changed in the past decade leading to the need of advanced cultivation methods to attain a higher yield in order to balance the demand for food of our rising population.
+									At that moment, we realised as engineers we could intervein and blend technology with farming to enhance the productivity and this website is a outcome of the thought.
+									</p>
+							</header>
+						</div>
+							
+							
+						</div>
+					</section>
 				
 				
 

@@ -2046,15 +2046,15 @@ input, select, textarea {
 			}
 
 		.icon.style1 {
-			color: #00ffcc;
+			color: #14c750;
 		}
 
 		.icon.style2 {
-			color: #00f0ff;
+			color: #e2692d;
 		}
 
 		.icon.style3 {
-			color: #76ddff;
+			color: #ffff76;
 		}
 
 /* Image */
@@ -4089,3 +4089,14 @@ input, select, textarea {
 		line-height: 2;
 
 	}
+	.about{
+		
+		padding: 25px;
+		box-shadow: 7px 10px 15px 7px rgba(0, 0, 0, 0.452);
+		background-color: #1d242a;
+		
+	  }
+	  .cont{
+		text-align: justify;
+		line-height: 2;
+	  }

@@ -56,17 +56,30 @@
 												
 											<h4>Soil Nutrients</h4>
 											</div>
-											<div class="col-6 col-12-xsmall">
+											<div class="col-3 col-12-xsmall">
+												<label>Amount of Nitrogen:</label>
+											</div>
+											<div class="col-3 col-12-xsmall">
 												<input type="number" id="Nitrogen" name="nitrogen" value="" placeholder="Amount of Nitrogen" required />
 											</div>
-											<div class="col-6 col-12-xsmall">
+											<div class="col-3 col-12-xsmall">
+												<label>Amount of Phosphorous:</label>
+											</div>
+
+											<div class="col-3 col-12-xsmall">
 												<input type="number" id="Phosphorous" name="phosphorous" value="" placeholder="Amount of Phosphorus" required/>
 											</div>
-											<div class="col-6 col-12-xsmall">
+											<div class="col-3 col-12-xsmall">
+												<label>Amount of Potassium:</label>
+											</div>
+											<div class="col-3 col-12-xsmall">
 												<input type="number" id="Pottasium" name="pottasium" value="" placeholder="Amount of Potassium" required/>
 											</div>
-											<div class="col-6 col-12-xsmall">
-												<input type="number" name="ph" id="ph" value="" step="0.01" placeholder=" Enter the pH value of the soil" required/>
+											<div class="col-3 col-12-xsmall">
+												<label>Enter the pH value of the soil:</label>
+											</div>
+											<div class="col-3 col-12-xsmall">
+												<input type="number" name="ph" id="ph" value="" step="0.01" placeholder=" pH value of the soil" required/>
 												</div>
 											
 											<div class="col-12">
@@ -75,8 +88,10 @@
 											</div>
 											
 											
-											
-											<div class="col-12">
+											<div class="col-3 col-12-xsmall">
+												<label>Rainfall in mm:</label>
+											</div>
+											<div class="col-9 col-12-xsmall">
 												<input type="number" id="Rainfall" name="rainfall" step="0.01" value="" placeholder="Rainfall in mm" required/>
 											</div>
 											<div class="col-12">
@@ -84,13 +99,18 @@
 												<h4>Area</h4>
 											</div>
 											
-											
-											<div class="col-6 col-12-xsmall">
+											<div class="col-3 col-12-xsmall">
+												<label>Name the state:</label>
+											</div>
+											<div class="col-3 col-12-xsmall">
 												<select onchange="print_city('state', this.selectedIndex);" id="sts" name="stt" required>
                         					</select>
 											</div>
+											<div class="col-3 col-12-xsmall">
+												<label>Name the city:</label>
+											</div>
 
-											<div class="col-6 col-12-xsmall">
+											<div class="col-3 col-12-xsmall">
 												<select name="city" id="state" required>
 												</select>
 											<script language="javascript">

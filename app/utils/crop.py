@@ -3,7 +3,7 @@ crop_image_dic={
     'maize':'maize.jpg',
     'chickpea':'chickpea.jpg', 
     'kidneybeans':'kidney_beans.jpg', 
-    'pigeonpeas':'pigeon+peas.jpg',
+    'pigeonpeas':'pigeon_peas.jpg',
     'mothbeans':'moth_beans.jpg', 
     'mungbean':'mung_beans.jpg', 
     'blackgram':'black_gram.jpg', 
